@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_library_music" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvYear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="year"
+                android:textColor="@android:color/holo_red_light" />
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="title" />
+
+            <TextView
+                android:id="@+id/tvSingers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="singers" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right">
+
+            <ImageView
+                android:id="@+id/imageView1star"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@android:drawable/btn_star_big_off" />
+
+            <ImageView
+                android:id="@+id/imageView2star"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@android:drawable/btn_star_big_off" />
+
+            <ImageView
+                android:id="@+id/imageView3star"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@android:drawable/btn_star_big_off" />
+
+            <ImageView
+                android:id="@+id/imageView4star"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@android:drawable/btn_star_big_off" />
+
+            <ImageView
+                android:id="@+id/imageView5star"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@android:drawable/btn_star_big_off" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView6"
+        android:background="@android:color/holo_blue_bright"
+        android:layout_width="match_parent"
+        android:layout_height="5dp" />
+
+</LinearLayout>
