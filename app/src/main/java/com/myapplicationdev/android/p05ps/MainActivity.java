@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,31 +38,34 @@ public class MainActivity extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String note = etTitle.getText().toString().trim();
-                if (note.length() == 0)
-                    return;
+                if (etTitle.getText().toString().length() == 0 ||
+                        etSingers.getText().toString().length() == 0 ||
+                        etYear.getText().toString().length() == 0 ||
+                        rg.getCheckedRadioButtonId() == -1 ) {
+                    Toast.makeText(MainActivity.this, "Incomplete data", Toast.LENGTH_SHORT).show();
+                }else {
 
-                DBHelper dbh = new DBHelper(MainActivity.this);
+                    DBHelper dbh = new DBHelper(MainActivity.this);
 
-                if (dbh.isExistingSong(etTitle.getText().toString())) {
-                    Toast.makeText(MainActivity.this, "Song name already exists", Toast.LENGTH_LONG).show();
-                } else {
-                    String title = etTitle.getText().toString();
-                    String singers = etSingers.getText().toString();
-                    int year = Integer.parseInt(etYear.getText().toString());
-                    int stars = getStars();
+                    if (dbh.isExistingSong(etTitle.getText().toString())) {
+                        Toast.makeText(MainActivity.this, "Song name already exists", Toast.LENGTH_LONG).show();
+                    } else {
+                        String title = etTitle.getText().toString();
+                        String singers = etSingers.getText().toString();
+                        int year = Integer.parseInt(etYear.getText().toString());
+                        int stars = getStars();
 
-                    long inserted_id = dbh.insertSong(title,singers,year,stars);
-                    dbh.close();
-                    if (inserted_id != -1) {
-                        Toast.makeText(MainActivity.this, "Insert successful",
-                                Toast.LENGTH_SHORT).show();
-                        etTitle.setText("");
-                        etSingers.setText("");
-                        etYear.setText("");
+                        long inserted_id = dbh.insertSong(title, singers, year, stars);
+                        dbh.close();
+                        if (inserted_id != -1) {
+                            Toast.makeText(MainActivity.this, "Insert successful",
+                                    Toast.LENGTH_SHORT).show();
+                            etTitle.setText("");
+                            etSingers.setText("");
+                            etYear.setText("");
+                        }
                     }
                 }
-
             }
         });
 
