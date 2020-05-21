@@ -5,10 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -53,6 +57,45 @@ public class ShowActivity extends AppCompatActivity {
                 al.addAll(dbh.getAllSong("5"));
                 dbh.close();
                 ca.notifyDataSetChanged();
+            }
+        });
+
+        final Spinner dynamicSpinner = (Spinner) findViewById(R.id.spinnerYear);
+        ArrayList<String> alYear = new ArrayList<String>();
+        alYear.add("Show all");
+        for (int i = 0; i < al.size(); i++){
+            alYear.add(al.get(i).getYear()+"");
+        }
+
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, alYear);
+
+        dynamicSpinner.setAdapter(adapter);
+
+        dynamicSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String year = dynamicSpinner.getSelectedItem().toString();
+                if(!year.equals("Show all")) {
+
+                    DBHelper dbh = new DBHelper(ShowActivity.this);
+                    al.clear();
+                    al.addAll(dbh.getAllSongByYear(year));
+                    dbh.close();
+                    ca.notifyDataSetChanged();
+                }else{
+                    DBHelper dbh = new DBHelper(ShowActivity.this);
+                    al.clear();
+                    al.addAll(dbh.getAllSongs());
+                    dbh.close();
+                    ca.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
     }

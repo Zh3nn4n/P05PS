@@ -44,7 +44,7 @@ public class CustomAdapter extends ArrayAdapter {
         Song song = songs.get(position);
         tvTitle.setText(song.getTitle());
         tvSinger.setText(song.getSingers());
-        tvYear.setText(song.getSingers());
+        tvYear.setText(song.getYear()+"");
 
         //Check if the property for starts == 5, if so, "light" up the stars
         if (song.getStars() == 5) {
